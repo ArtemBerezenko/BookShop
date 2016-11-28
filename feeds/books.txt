@@ -1,0 +1,8 @@
+Cay S. Horstmann: Core Java Volume I. Fundamentals;44.39
+Cay S. Horstmann: Core Java Volume II. Advanced Features;37.13
+Bruce Eckel: Thinking in Java;43.06
+Herbert Schildt: Java A Beginner's Guide;21.19
+Bert Bates, Kathy Sierra: Head First Java;29.91
+Robert Lafore: Data Structures and Algorithms in Java;48.09
+Robert C. Martin: Clean Code;39.99
+Martin Fowler: Refactoring;54.48
