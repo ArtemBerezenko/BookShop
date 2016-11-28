@@ -11,4 +11,12 @@ public class Book {
         this.title = title;
         this.price = price;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public float getPrice() {
+        return price;
+    }
 }

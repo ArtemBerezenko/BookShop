@@ -36,8 +36,13 @@ public class View extends JDialog {
         });
 
         DefaultListModel listModel = new DefaultListModel();
+//        for(int i = 0; i < Controller.shop.getBooks().size(); ++i){
+//            listModel.add(i, Controller.shop.getBooks().get(i));
+//        }
         listModel.addElement(Controller.shop.getBooks());
         list1 = new JList(listModel);
+        list1.setVisible(true);
+
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
