@@ -16,6 +16,6 @@ public class Main {
         dialog.pack();
         dialog.setVisible(true);
         dialog.repaint();
-//        System.exit(0);
+
     }
 }

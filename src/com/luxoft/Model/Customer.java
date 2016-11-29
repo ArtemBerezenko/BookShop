@@ -12,8 +12,9 @@ public class Customer {
     public Customer(String name) {
         this.name = name;
     }
-//    private float purchaseAmount;
-//    List<Book> currentOrder = new ArrayList<>();
+
+    public Customer() {}
+
 
     public String toString(){
         return this.name;

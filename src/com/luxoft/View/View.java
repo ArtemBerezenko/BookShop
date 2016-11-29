@@ -6,10 +6,7 @@ import com.luxoft.Controller.Controller;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class View extends JDialog {
     private JPanel contentPane;
@@ -21,12 +18,14 @@ public class View extends JDialog {
     private JTextPane textPane1;
     private JTextField textField1;
     private JButton newOrder;
+    private JScrollBar scrollBar1;
 
 
     public View() {
         setContentPane(contentPane);
         setModal(true);
-        getRootPane().setDefaultButton(buttonRemove);
+        getRootPane().setDefaultButton(buttonBuy);
+
 
         DefaultListModel listModel = new DefaultListModel();
         for (int i = 0; i < Controller.getBooks().size(); ++i) {
@@ -66,6 +65,8 @@ public class View extends JDialog {
                     Object elem = list1.getSelectedValue();
                     Controller.addCurrentOrder(elem);
                     addOnList(elem);
+                    String name = textField1.getText();
+                    Controller.addCustomer(name);
                 }
                 }
             }
@@ -84,11 +85,15 @@ public class View extends JDialog {
             }
         });
 
+        textPane1.setText(String.valueOf(Controller.getAllOrders()));
+
+
+
         buttonRemove.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Object elem = list2.getSelectedValue();
                 Controller.onRemove(elem);
-                addOnList(Controller.displayCurrentOrder());
+                addOnList(Controller.getCurrentBooks());
 //                list2.updateUI();
 //                list2.setVisible(true);
             }
@@ -97,9 +102,10 @@ public class View extends JDialog {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object elem = list1.getSelectedValue();
-                Controller.addCurrentOrder(elem);
-                addOnList(Controller.displayCurrentOrder());
+                Controller.addCurrentOrder(list1.getSelectedValue());
+                addOnList(Controller.getCurrentBooks());
+                String name = textField1.getText();
+                Controller.addCustomer(name);
 //                list2.setVisible(true);
             }
         });
@@ -108,6 +114,7 @@ public class View extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 Controller.onBuy();
                 textPane1.setText(String.valueOf(Controller.getAllOrders()));
+                Controller.loadInFile();
             }
         });
 
@@ -137,9 +144,9 @@ public class View extends JDialog {
     }
 
     private void update() {
-//        textField1.setText("");
+        textField1.setText("");
         DefaultListModel listModel3 = new DefaultListModel();
-        listModel3.addElement(Controller.displayCurrentOrder());
+        listModel3.addElement(Controller.getCurrentBooks());
         list2.setModel(listModel3);
 
     }
@@ -147,13 +154,10 @@ public class View extends JDialog {
 
     public void addOnList(Object elem) {
         DefaultListModel listModel2 = new DefaultListModel();
-        for (int i = 0; i < Controller.displayCurrentOrder().size(); ++i) {
-                listModel2.addElement(Controller.displayCurrentOrder().get(i));
-                list2.setModel(listModel2);
-//                listModel2.clear();
-//                list2.setModel(listModel2);
-//            list2.setVisible(true);
+        for (int i = 0; i < Controller.getCurrentBooks().size(); ++i) {
+            listModel2.addElement(Controller.getCurrentBooks().get(i));
         }
+                list2.setModel(listModel2);
     }
 
 

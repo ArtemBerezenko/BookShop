@@ -6,13 +6,7 @@ package com.luxoft.Model;
 public class Book {
     private String title;
     private float price;
-//    private int count;
 
-//    public Book(String title, float price, int count) {
-//        this.title = title;
-//        this.price = price;
-//        this.count = count;
-//    }
 
     public Book(String title, float price) {
         this.title = title;
@@ -28,6 +22,6 @@ public class Book {
     }
 
     public String toString(){
-        return this.title + " $" + this.price + "\n";
+        return this.title + " - $" + this.price + "\n";
     }
 }

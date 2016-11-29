@@ -1,6 +1,8 @@
 package com.luxoft.Model;
 
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,7 +13,7 @@ public class Shop {
     private static final int PRICE = 1;
     private Customer currentCustomer;
     private List<Book> books = new ArrayList<>();
-    private List<Book> currentOrder = new ArrayList<>();
+    private List<Book> currentBooks = new ArrayList<>();
     private List<Customer> customers = new ArrayList<>();
     private List<Order> allOrders = new ArrayList<>();
 
@@ -29,8 +31,8 @@ public class Shop {
         return books;
     }
 
-    public List<Book> getCurrentOrder() {
-        return currentOrder;
+    public List<Book> getCurrentBooks() {
+        return currentBooks;
     }
 
     public void createCustomer(String name){
@@ -39,19 +41,19 @@ public class Shop {
     }
 
     public void removeBook(Book book){
-        currentOrder.remove(book);
+        currentBooks.remove(book);
     }
 
 
     public void checkout() {
         float amount = getAmountOrder();
-        Order order = new Order(currentCustomer, currentOrder, amount);
+        Order order = new Order(currentCustomer, currentBooks, amount);
         allOrders.add(order);
     }
 
     private float getAmountOrder(){
         float amount = 0;
-        for(Book order : currentOrder){
+        for(Book order : currentBooks){
             amount += order.getPrice();
         }
         return amount;
@@ -62,15 +64,35 @@ public class Shop {
     }
 
     public void update() {
-        this.currentCustomer = null;
-        this.currentOrder = null;
+        this.currentCustomer = new Customer();
+        this.currentBooks = new ArrayList<>();
     }
 
-    //    public void setAmount(){
-//        float amount = 0;
-//        for(Book book : customerBooks){
-//            amount += book.getPrice();
+    public List<String> createListString() {
+        List<String> strings = new ArrayList<>();
+        for (Order order : allOrders) {
+            strings.add(order.createString());
+        }
+        return strings;
+    }
+
+//    public void parseFeedOrders(String string) {
+//        Date date = null;
+//        String[] newLine = string.split(";");
+//        for(String line : newLine) {
+//            String[] str = line.split("=");
+//            if ("Book".equals(str[0])) {
+//                String[] ln = string.split(" - ");
+//                currentBooks.add(new Book(ln[TITLE], Float.parseFloat(ln[PRICE])));
+//            }
+//            if ("Date".equals(newLine[0])) {
+//                date = Date.from(Instant.parse(str[1]));
+//            }
+//            if ("Customer".equals(str[0])) {
+//                currentCustomer = new Customer(str[0]);
+//            }
 //        }
-//        this.amountOrder = amount;
+//            allOrders.add(new Order(date, currentCustomer, currentBooks, getAmountOrder()));
 //    }
+
 }

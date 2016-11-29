@@ -4,16 +4,18 @@ package com.luxoft.Model;
 
 import com.luxoft.Controller.Controller;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Home on 29.11.2016.
  */
 public class Feed {
     public static File file = new File("C:feeds\\books.txt");
+    public static File document = new File("C:feeds\\orders.txt");
 
     public void loadFeed(File file) {
         try {
@@ -30,4 +32,21 @@ public class Feed {
         }
     }
 
+    public static void writeOnFile (List<String> strings) {
+        try {
+            if(!document.exists()){
+                document.createNewFile();
+            }
+            PrintWriter out = new PrintWriter(document.getAbsoluteFile());
+            try {
+                for(String string : strings) {
+                    out.println(string);
+                }
+            } finally {
+                out.close();
+            }
+        } catch(IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

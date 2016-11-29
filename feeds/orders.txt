@@ -1,0 +1,8 @@
+Date=30.11.2016;Client=Ivanov;Book=Cay S. Horstmann: Core Java Volume II. Advanced Features - $37.13
+;Book=Cay S. Horstmann: Core Java Volume II. Advanced Features - $37.13
+;TOTAL AMOUNT=74.26;
+
+Date=30.11.2016;Client=Sidorov;Book=Robert C. Martin: Clean Code - $39.99
+;Book=Robert Lafore: Data Structures and Algorithms in Java - $48.09
+;TOTAL AMOUNT=88.08;
+

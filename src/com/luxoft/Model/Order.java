@@ -1,6 +1,7 @@
 package com.luxoft.Model;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -12,9 +13,6 @@ public class Order {
     private List<Book> customerBooks = new ArrayList<>();
     private float amountOrder = 0;
 
-    public Date getDate() {
-        return date;
-    }
 
     public Customer getCustomer() {
         return customer;
@@ -34,15 +32,35 @@ public class Order {
 
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("Date: " + DateFormat.getTimeInstance().format(date) + " Client: " + this.getCustomer());
+        str.append(" Date: " + DateFormat.getDateInstance().format(date) + " Client: " + this.getCustomer());
         str.append("\n");
-        for(Book order : customerBooks){
-            str.append(" Book: " + order.toString());
+        for(Book book : customerBooks){
+            str.append(" Book: " + book.toString());
         }
+        str.append("TOTAL AMOUNT: " + "$" + this.amountOrder + "\n");
         str.append("\n");
-        str.append("TOTAL AMOUNT: " + "$" + this.amountOrder);
         return str.toString();
     }
+
+    public String createString(){
+        StringBuilder str = new StringBuilder();
+        str.append("Date=" + DateFormat.getDateInstance().format(date) + ";"+ "Client=" + this.getCustomer() + ";");
+        for(Book book : customerBooks){
+            str.append("Book=" + book.toString() + ";");
+        }
+        str.append("TOTAL AMOUNT=" + this.amountOrder + ";");
+        str.append("\n");
+        return str.toString();
+    }
+
+//
+//    public Order(Date date, Customer customer, List<Book> customerBooks, float amountOrder) {
+//        this.date = date;
+//        this.customer = customer;
+//        this.customerBooks = customerBooks;
+//        this.amountOrder = amountOrder;
+//    }
+
 //    public float getAmount(){
 //        float amount = 0;
 //        for(Book book : customerBooks){
@@ -79,23 +97,6 @@ public class Order {
 //            summ += amount;
 //        }
 //        return summ;
-//    }
-
-
-
-
-//    private List<Book> books = new ArrayList<>();
-//
-//    public void addBook(Book book){
-//        books.add(book);
-//    }
-//
-//    public void removeBook(Book book){
-//        books.remove(book);
-//    }
-//
-//    public List<Book> getBooks() {
-//        return books;
 //    }
 
 }
