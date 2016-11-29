@@ -1,12 +1,8 @@
 package com.luxoft.Controller;
 
-import com.luxoft.Model.Shop;
+import com.luxoft.Model.*;
+import com.luxoft.View.View;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.sun.activation.registries.LogSupport.log;
@@ -15,24 +11,45 @@ import static com.sun.activation.registries.LogSupport.log;
  * Created by Home on 28.11.2016.
  */
 public class Controller {
-    public static File file = new File("C:\\Users\\Home\\IdeaProjects\\BookShop\\feeds\\books.txt");
+    public static View view;
     public static Shop shop = new Shop();
-//    public static List<String> stringFromFile =  new ArrayList<>();
 
-    public void loadFeed(File file) {
-        try {
-            BufferedReader in =
-                    new BufferedReader(
-                            new FileReader(file));
-            String line;
-            while( (line = in.readLine()) != null) {
-//                stringFromFile.add(line);
-                shop.parseFeed(line);
-            }
-            in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static void onRemove(Object elem) {
+        shop.removeBook((Book) elem);
     }
 
+    public static void onBuy() {
+        shop.checkout();
+    }
+
+    public static void addCurrentOrder(Object order){
+        shop.getCurrentOrder().add((Book) order);
+    }
+
+    public static List<Book> displayCurrentOrder(){
+        List<Book> books;
+        books = shop.getCurrentOrder();
+        return books;
+    }
+
+    public static List<Book> getBooks(){
+        List<Book> books;
+        books = shop.getBooks();
+        return books;
+    }
+
+    public static void addCustomer(String sting){
+        shop.createCustomer(sting);
+    }
+
+    public static List<Order> getAllOrders(){
+        List<Order> orders;
+        orders = shop.getAllOrders();
+        return orders;
+    }
+
+
+    public static void createNewOrder() {
+        shop.update();
+    }
 }
