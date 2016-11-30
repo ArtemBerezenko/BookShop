@@ -4,6 +4,7 @@ package com.luxoft.Model;
 
 import com.luxoft.Controller.Controller;
 
+
 import java.io.*;
 import java.util.*;
 
@@ -30,34 +31,41 @@ public class Feed {
     }
 
     public void loadFromFile(File file) {
+        if(!checkFileIsEmpty(file)) {
+            try {
+                BufferedReader in =
+                        new BufferedReader(
+                                new FileReader(file));
+                String line;
+                    while ((line = in.readLine()) != null) {
+                        Controller.shop.parseFeedOrders(line);
+                    }
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else{
+            Controller.shop.getAllOrders();
+        }
+    }
+
+    public boolean checkFileIsEmpty(File file) {
+        boolean flag = false;
         try {
             BufferedReader in =
                     new BufferedReader(
                             new FileReader(file));
             String line = in.readLine();
-            if(!(line.isEmpty())){
-            while( (line = in.readLine()) != null) {
-                Controller.shop.parseFeedOrders(line);
-                }
+            if(line.isEmpty()){
+                flag = true;
             }
             in.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return flag;
     }
 
-//    public void loadFromFile(File file){
-//        Scanner scanner = null;
-//        try {
-//            scanner = new Scanner(file);
-//        while(scanner.hasNextLine()){
-//            String line = scanner.nextLine();
-//            Controller.shop.parseFeedOrders(line);
-//        }
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public static void writeOnFile (List<String> strings) {
         try {

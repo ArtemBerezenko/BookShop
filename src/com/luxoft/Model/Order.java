@@ -67,42 +67,4 @@ public class Order {
         this.amountOrder = amountOrder;
     }
 
-    //    public float getAmount(){
-//        float amount = 0;
-//        for(Book book : customerBooks){
-//            amount = book.getPrice();
-//        }
-//        return amount;
-//    }
-
-//    private Map<Book, Integer> order = new HashMap<>();
-//
-//    public void addBook(Book book, int count){
-//        int countBook = 0;
-//        int newCount = 0;
-//        if(this.order.containsKey(book)){
-//            countBook = order.get(book);
-//            newCount = countBook + count;
-//            order.replace(book, countBook, newCount);
-//        }
-//        order.put(book, count);
-//    }
-
-//    public void removeBook(Book book){
-//        order.remove(book);
-//    }
-//
-//    public Map<Book, Integer> getBooks() {
-//        return order;
-//    }
-//
-//    public float getAmount(){
-//        float amount, summ = 0;
-//        for(Book book : order.keySet()){
-//            amount = book.getPrice() * order.get(book);
-//            summ += amount;
-//        }
-//        return summ;
-//    }
-
 }
