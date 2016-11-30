@@ -34,9 +34,11 @@ public class Feed {
             BufferedReader in =
                     new BufferedReader(
                             new FileReader(file));
-            String line;
+            String line = in.readLine();
+            if(!(line.isEmpty())){
             while( (line = in.readLine()) != null) {
                 Controller.shop.parseFeedOrders(line);
+                }
             }
             in.close();
         } catch (IOException e) {
