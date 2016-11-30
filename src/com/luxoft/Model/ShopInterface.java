@@ -8,7 +8,7 @@ import java.util.List;
 public interface ShopInterface {
     void removeBook(Product product);
     void checkout();
-    List<Product> getCurrentProduct();
+    List<Product> getCurrentProducts();
     List<Product> getProducts();
     void createCustomer(String name);
     List<Order> getAllOrders();

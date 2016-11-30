@@ -24,11 +24,11 @@ public class Controller {
     }
 
     public static void addCurrentOrder(Object order){
-        shop.getCurrentProduct().add((Book) order);
+        shop.getCurrentProducts().add((Book) order);
     }
 
     public static List<Product> getCurrentBooks(){
-        return shop.getCurrentProduct();
+        return shop.getCurrentProducts();
     }
 
     public static List<Product> getBooks(){

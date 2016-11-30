@@ -11,7 +11,7 @@ public class Shop implements ShopInterface {
     private static final int PRICE = 1;
     private Customer currentCustomer;
     private List<Product> products = new ArrayList<>();
-    private List<Product> currentProduct = new ArrayList<>();
+    private List<Product> currentProducts = new ArrayList<>();
     private List<Customer> customers = new ArrayList<>();
     private List<Order> allOrders = new ArrayList<>();
 
@@ -24,9 +24,8 @@ public class Shop implements ShopInterface {
         return products;
     }
 
-    @Override
-    public List<Product> getCurrentProduct() {
-        return currentProduct;
+    public List<Product> getCurrentProducts() {
+        return currentProducts;
     }
     @Override
     public void createCustomer(String name){
@@ -35,19 +34,19 @@ public class Shop implements ShopInterface {
     }
     @Override
     public void removeBook(Product product){
-        currentProduct.remove(product);
+        currentProducts.remove(product);
     }
 
     @Override
     public void checkout() {
         float amount = getAmountOrder();
-        Order order = new Order(currentCustomer, currentProduct, amount);
+        Order order = new Order(currentCustomer, currentProducts, amount);
         allOrders.add(order);
     }
 
     private float getAmountOrder(){
         float amount = 0;
-        for(Product product : currentProduct){
+        for(Product product : currentProducts){
             amount += product.getPrice();
         }
         return amount;
@@ -61,7 +60,7 @@ public class Shop implements ShopInterface {
     @Override
     public void update() {
         this.currentCustomer = new Customer();
-        this.currentProduct = new ArrayList<>();
+        this.currentProducts = new ArrayList<>();
     }
 
     @Override
@@ -87,7 +86,7 @@ public class Shop implements ShopInterface {
                 String bookLine = str[1];
                 String[] ln = bookLine.split(" - ");
                 Book book = new Book(ln[TITLE], Float.parseFloat(ln[PRICE]));
-                currentProduct.add(book);
+                currentProducts.add(book);
             }
             if ("Date".equals(str[0])) {
                 date = str[1];
@@ -96,8 +95,8 @@ public class Shop implements ShopInterface {
                 currentCustomer = new Customer(str[1]);
             }
         }
-        allOrders.add(new Order(date, currentCustomer, currentProduct, getAmountOrder()));
-        currentProduct = new ArrayList<>();
+        allOrders.add(new Order(date, currentCustomer, currentProducts, getAmountOrder()));
+        currentProducts = new ArrayList<>();
 
     }
 

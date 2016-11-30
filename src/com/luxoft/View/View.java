@@ -25,7 +25,7 @@ public class View extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonBuy);
-        setMinimumSize(new Dimension(600,400));
+        setMinimumSize(new Dimension(1000,600));
 
 
         DefaultListModel listModel = new DefaultListModel();
