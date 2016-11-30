@@ -6,6 +6,7 @@ import com.luxoft.Controller.Controller;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.*;
 
 public class View extends JDialog {
@@ -24,6 +25,7 @@ public class View extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonBuy);
+        setMinimumSize(new Dimension(1000,600));
 
 
         DefaultListModel listModel = new DefaultListModel();

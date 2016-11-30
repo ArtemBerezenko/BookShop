@@ -37,26 +37,27 @@ public class Feed {
                         new BufferedReader(
                                 new FileReader(file));
                 String line;
-                    while ((line = in.readLine()) != null) {
-                        Controller.shop.parseFeedOrders(line);
-                    }
+                while ((line = in.readLine()) != null) {
+                    Controller.shop.parseFeedOrders(line);
+                }
                 in.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else{
-            Controller.shop.getAllOrders();
-        }
+                Controller.shop.getAllOrders();
+            }
     }
 
     public boolean checkFileIsEmpty(File file) {
         boolean flag = false;
         try {
-            BufferedReader in =
-                    new BufferedReader(
+            Scanner in =
+                    new Scanner(
                             new FileReader(file));
-            String line = in.readLine();
-            if(line.isEmpty()){
+            String line;
+            //line = in.readLine()) == null
+            if(!in.hasNext()){
                 flag = true;
             }
             in.close();

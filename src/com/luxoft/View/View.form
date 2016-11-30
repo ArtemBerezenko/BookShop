@@ -5,7 +5,9 @@
     <constraints>
       <xy x="49" y="67" width="476" height="285"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-3872555"/>
+    </properties>
     <border type="none"/>
     <children>
       <grid id="94766" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -15,7 +17,9 @@
             <preferred-size width="346" height="101"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-3872555"/>
+        </properties>
         <border type="none"/>
         <children>
           <hspacer id="98af6">
@@ -28,7 +32,9 @@
             <constraints>
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-3872555"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="5723f" class="javax.swing.JButton" binding="buttonBuy">
@@ -81,7 +87,9 @@
             <preferred-size width="410" height="141"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-3872555"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="115d3" class="javax.swing.JList" binding="list1" default-binding="true">

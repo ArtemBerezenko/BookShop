@@ -1,10 +1,6 @@
 package com.luxoft.Model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,12 +18,6 @@ public class Shop {
     public Customer getCurrentCustomer() {
         return currentCustomer;
     }
-
-//    public void parseFeed(String string) {
-//            String[] newLine = string.split(";");
-//            Book book = new Book(newLine[TITLE], Float.parseFloat(newLine[PRICE]));
-//            books.add(book);
-//    }
 
     public List<Book> getBooks() {
         return books;
@@ -102,7 +92,17 @@ public class Shop {
                 currentCustomer = new Customer(str[1]);
             }
         }
-            allOrders.add(new Order(date, currentCustomer, currentBooks, getAmountOrder()));
+        allOrders.add(new Order(date, currentCustomer, currentBooks, getAmountOrder()));
+        currentBooks = new ArrayList<>();
+
     }
+
+//    public boolean checkCounterparts(Order order){
+//        boolean flag = false;
+//        for(Order ord : allOrders) {
+//            if (order.equals(ord)) flag = true;
+//        }
+//        return flag;
+//    }
 
 }
