@@ -1,6 +1,7 @@
 package com.luxoft.Model;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -44,24 +45,29 @@ public class Order {
 
     public String createString(){
         StringBuilder str = new StringBuilder();
-        str.append("Date=" + DateFormat.getDateInstance().format(date) + ";"+ "Client=" + this.getCustomer() + ";");
+        str.append("Date=" + DateFormat.getDateInstance().format(date) + ";"+ "Customer=" + this.getCustomer() + ";");
         for(Book book : customerBooks){
-            str.append("Book=" + book.toString() + ";");
+            str.append("Book=" + book.createStringBook() + ";");
         }
         str.append("TOTAL AMOUNT=" + this.amountOrder + ";");
-        str.append("\n");
         return str.toString();
     }
 
-//
-//    public Order(Date date, Customer customer, List<Book> customerBooks, float amountOrder) {
-//        this.date = date;
-//        this.customer = customer;
-//        this.customerBooks = customerBooks;
-//        this.amountOrder = amountOrder;
-//    }
+    public Order(String string, Customer customer, List<Book> customerBooks, float amountOrder) {
 
-//    public float getAmount(){
+        SimpleDateFormat format = new SimpleDateFormat();
+        format.applyPattern("dd.MM.yyyy");
+        try {
+            this.date = format.parse(string);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        this.customer = customer;
+        this.customerBooks = customerBooks;
+        this.amountOrder = amountOrder;
+    }
+
+    //    public float getAmount(){
 //        float amount = 0;
 //        for(Book book : customerBooks){
 //            amount = book.getPrice();

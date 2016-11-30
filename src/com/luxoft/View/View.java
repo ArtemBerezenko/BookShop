@@ -18,7 +18,6 @@ public class View extends JDialog {
     private JTextPane textPane1;
     private JTextField textField1;
     private JButton newOrder;
-    private JScrollBar scrollBar1;
 
 
     public View() {
@@ -86,6 +85,7 @@ public class View extends JDialog {
         });
 
         textPane1.setText(String.valueOf(Controller.getAllOrders()));
+        Controller.createNewOrder();
 
 
 

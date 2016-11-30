@@ -1,8 +1,3 @@
-Date=30.11.2016;Client=Ivanov;Book=Cay S. Horstmann: Core Java Volume II. Advanced Features - $37.13
-;Book=Cay S. Horstmann: Core Java Volume II. Advanced Features - $37.13
-;TOTAL AMOUNT=74.26;
-
-Date=30.11.2016;Client=Sidorov;Book=Robert C. Martin: Clean Code - $39.99
-;Book=Robert Lafore: Data Structures and Algorithms in Java - $48.09
-;TOTAL AMOUNT=88.08;
-
+Date=30.11.2016;Customer=Ivanov;Book=Bruce Eckel: Thinking in Java - 43.06;Book=Bert Bates, Kathy Sierra: Head First Java - 29.91;Book=Robert Lafore: Data Structures and Algorithms in Java - 48.09;Book=Martin Fowler: Refactoring - 54.48;TOTAL AMOUNT=72.97;
+Date=30.11.2016;Customer=Sidorov;Book=Bruce Eckel: Thinking in Java - 43.06;Book=Bert Bates, Kathy Sierra: Head First Java - 29.91;Book=Robert Lafore: Data Structures and Algorithms in Java - 48.09;Book=Martin Fowler: Refactoring - 54.48;TOTAL AMOUNT=175.54;
+Date=30.11.2016;Customer=Pitrov;Book=Bruce Eckel: Thinking in Java - 43.06;TOTAL AMOUNT=43.06;

@@ -12,6 +12,7 @@ public class Main {
     public static void main(String[] args) {
         Feed feed = new Feed();
         feed.loadFeed(Feed.file);
+        feed.loadFromFile(Feed.document);
         View dialog = new View();
         dialog.pack();
         dialog.setVisible(true);

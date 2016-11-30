@@ -1,5 +1,7 @@
 package com.luxoft.Model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,11 +23,11 @@ public class Shop {
         return currentCustomer;
     }
 
-    public void parseFeed(String string) {
-            String[] newLine = string.split(";");
-            Book book = new Book(newLine[TITLE], Float.parseFloat(newLine[PRICE]));
-            books.add(book);
-    }
+//    public void parseFeed(String string) {
+//            String[] newLine = string.split(";");
+//            Book book = new Book(newLine[TITLE], Float.parseFloat(newLine[PRICE]));
+//            books.add(book);
+//    }
 
     public List<Book> getBooks() {
         return books;
@@ -76,23 +78,31 @@ public class Shop {
         return strings;
     }
 
-//    public void parseFeedOrders(String string) {
-//        Date date = null;
-//        String[] newLine = string.split(";");
-//        for(String line : newLine) {
-//            String[] str = line.split("=");
-//            if ("Book".equals(str[0])) {
-//                String[] ln = string.split(" - ");
-//                currentBooks.add(new Book(ln[TITLE], Float.parseFloat(ln[PRICE])));
-//            }
-//            if ("Date".equals(newLine[0])) {
-//                date = Date.from(Instant.parse(str[1]));
-//            }
-//            if ("Customer".equals(str[0])) {
-//                currentCustomer = new Customer(str[0]);
-//            }
-//        }
-//            allOrders.add(new Order(date, currentCustomer, currentBooks, getAmountOrder()));
-//    }
+    public void parseFeed(String string) {
+        String[] newLine = string.split(";");
+        Book book = new Book(newLine[TITLE], Float.parseFloat(newLine[PRICE]));
+        books.add(book);
+    }
+
+    public void parseFeedOrders(String string) {
+        String[] newLine = string.split(";");
+        String date = "";
+        for(String line : newLine) {
+            String[] str = line.split("=");
+            if ("Book".equals(str[0])) {
+                String bookLine = str[1];
+                String[] ln = bookLine.split(" - ");
+                Book book = new Book(ln[TITLE], Float.parseFloat(ln[PRICE]));
+                currentBooks.add(book);
+            }
+            if ("Date".equals(str[0])) {
+                date = str[1];
+            }
+            if ("Customer".equals(str[0])) {
+                currentCustomer = new Customer(str[1]);
+            }
+        }
+            allOrders.add(new Order(date, currentCustomer, currentBooks, getAmountOrder()));
+    }
 
 }

@@ -5,10 +5,7 @@ package com.luxoft.Model;
 import com.luxoft.Controller.Controller;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Home on 29.11.2016.
@@ -31,6 +28,34 @@ public class Feed {
             e.printStackTrace();
         }
     }
+
+    public void loadFromFile(File file) {
+        try {
+            BufferedReader in =
+                    new BufferedReader(
+                            new FileReader(file));
+            String line;
+            while( (line = in.readLine()) != null) {
+                Controller.shop.parseFeedOrders(line);
+            }
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+//    public void loadFromFile(File file){
+//        Scanner scanner = null;
+//        try {
+//            scanner = new Scanner(file);
+//        while(scanner.hasNextLine()){
+//            String line = scanner.nextLine();
+//            Controller.shop.parseFeedOrders(line);
+//        }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public static void writeOnFile (List<String> strings) {
         try {

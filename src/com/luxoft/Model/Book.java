@@ -24,4 +24,8 @@ public class Book {
     public String toString(){
         return this.title + " - $" + this.price + "\n";
     }
+
+    public String createStringBook(){
+        return this.title + " - " + this.price;
+    }
 }
