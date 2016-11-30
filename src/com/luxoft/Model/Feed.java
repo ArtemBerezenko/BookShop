@@ -11,10 +11,11 @@ import java.util.*;
 /**
  * Created by Home on 29.11.2016.
  */
-public class Feed {
+public class Feed implements ParseFeed {
     public static File file = new File("C:feeds\\books.txt");
     public static File document = new File("C:feeds\\orders.txt");
 
+    @Override
     public void loadFeed(File file) {
         try {
             BufferedReader in =
@@ -30,6 +31,7 @@ public class Feed {
         }
     }
 
+    @Override
     public void loadFromFile(File file) {
         if(!checkFileIsEmpty(file)) {
             try {
@@ -55,8 +57,6 @@ public class Feed {
             Scanner in =
                     new Scanner(
                             new FileReader(file));
-            String line;
-            //line = in.readLine()) == null
             if(!in.hasNext()){
                 flag = true;
             }

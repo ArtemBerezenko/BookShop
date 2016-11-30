@@ -11,7 +11,7 @@ import java.util.*;
 public class Order {
     private Date date;
     private Customer customer;
-    private List<Book> customerBooks = new ArrayList<>();
+    private List<Product> customerProducts = new ArrayList<>();
     private float amountOrder = 0;
 
 
@@ -23,10 +23,10 @@ public class Order {
         return amountOrder;
     }
 
-    public Order(Customer customer, List<Book> customerBooks, float amountOrder) {
+    public Order(Customer customer, List<Product> customerProducts, float amountOrder) {
         this.date = new Date();
         this.customer = customer;
-        this.customerBooks = customerBooks;
+        this.customerProducts = customerProducts;
         this.amountOrder = amountOrder;
     }
 
@@ -35,8 +35,8 @@ public class Order {
         StringBuilder str = new StringBuilder();
         str.append(" Date: " + DateFormat.getDateInstance().format(date) + " Client: " + this.getCustomer());
         str.append("\n");
-        for(Book book : customerBooks){
-            str.append(" Book: " + book.toString());
+        for(Product product : customerProducts){
+            str.append(" Book: " + product.toString());
         }
         str.append("TOTAL AMOUNT: " + "$" + this.amountOrder + "\n");
         str.append("\n");
@@ -46,14 +46,14 @@ public class Order {
     public String createString(){
         StringBuilder str = new StringBuilder();
         str.append("Date=" + DateFormat.getDateInstance().format(date) + ";"+ "Customer=" + this.getCustomer() + ";");
-        for(Book book : customerBooks){
-            str.append("Book=" + book.createStringBook() + ";");
+        for(Product product : customerProducts){
+            str.append("Book=" + product.createString() + ";");
         }
         str.append("TOTAL AMOUNT=" + this.amountOrder + ";");
         return str.toString();
     }
 
-    public Order(String string, Customer customer, List<Book> customerBooks, float amountOrder) {
+    public Order(String string, Customer customer, List<Product> customerProducts, float amountOrder) {
 
         SimpleDateFormat format = new SimpleDateFormat();
         format.applyPattern("dd.MM.yyyy");
@@ -63,7 +63,7 @@ public class Order {
             e.printStackTrace();
         }
         this.customer = customer;
-        this.customerBooks = customerBooks;
+        this.customerProducts = customerProducts;
         this.amountOrder = amountOrder;
     }
 

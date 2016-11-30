@@ -6,12 +6,12 @@ import java.util.List;
 /**
  * Created by Home on 28.11.2016.
  */
-public class Shop {
+public class Shop implements ShopInterface {
     private static final int TITLE = 0;
     private static final int PRICE = 1;
     private Customer currentCustomer;
-    private List<Book> books = new ArrayList<>();
-    private List<Book> currentBooks = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
+    private List<Product> currentProduct = new ArrayList<>();
     private List<Customer> customers = new ArrayList<>();
     private List<Order> allOrders = new ArrayList<>();
 
@@ -19,47 +19,52 @@ public class Shop {
         return currentCustomer;
     }
 
-    public List<Book> getBooks() {
-        return books;
+    @Override
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public List<Book> getCurrentBooks() {
-        return currentBooks;
+    @Override
+    public List<Product> getCurrentProduct() {
+        return currentProduct;
     }
-
+    @Override
     public void createCustomer(String name){
         currentCustomer = new Customer(name);
         customers.add(currentCustomer);
     }
-
-    public void removeBook(Book book){
-        currentBooks.remove(book);
+    @Override
+    public void removeBook(Product product){
+        currentProduct.remove(product);
     }
 
-
+    @Override
     public void checkout() {
         float amount = getAmountOrder();
-        Order order = new Order(currentCustomer, currentBooks, amount);
+        Order order = new Order(currentCustomer, currentProduct, amount);
         allOrders.add(order);
     }
 
     private float getAmountOrder(){
         float amount = 0;
-        for(Book order : currentBooks){
-            amount += order.getPrice();
+        for(Product product : currentProduct){
+            amount += product.getPrice();
         }
         return amount;
     }
 
+    @Override
     public List<Order> getAllOrders() {
         return allOrders;
     }
 
+    @Override
     public void update() {
         this.currentCustomer = new Customer();
-        this.currentBooks = new ArrayList<>();
+        this.currentProduct = new ArrayList<>();
     }
 
+    @Override
     public List<String> createListString() {
         List<String> strings = new ArrayList<>();
         for (Order order : allOrders) {
@@ -67,13 +72,12 @@ public class Shop {
         }
         return strings;
     }
-
+    @Override
     public void parseFeed(String string) {
         String[] newLine = string.split(";");
-        Book book = new Book(newLine[TITLE], Float.parseFloat(newLine[PRICE]));
-        books.add(book);
+        products.add(new Book(newLine[TITLE], Float.parseFloat(newLine[PRICE])));
     }
-
+    @Override
     public void parseFeedOrders(String string) {
         String[] newLine = string.split(";");
         String date = "";
@@ -83,7 +87,7 @@ public class Shop {
                 String bookLine = str[1];
                 String[] ln = bookLine.split(" - ");
                 Book book = new Book(ln[TITLE], Float.parseFloat(ln[PRICE]));
-                currentBooks.add(book);
+                currentProduct.add(book);
             }
             if ("Date".equals(str[0])) {
                 date = str[1];
@@ -92,17 +96,9 @@ public class Shop {
                 currentCustomer = new Customer(str[1]);
             }
         }
-        allOrders.add(new Order(date, currentCustomer, currentBooks, getAmountOrder()));
-        currentBooks = new ArrayList<>();
+        allOrders.add(new Order(date, currentCustomer, currentProduct, getAmountOrder()));
+        currentProduct = new ArrayList<>();
 
     }
-
-//    public boolean checkCounterparts(Order order){
-//        boolean flag = false;
-//        for(Order ord : allOrders) {
-//            if (order.equals(ord)) flag = true;
-//        }
-//        return flag;
-//    }
 
 }

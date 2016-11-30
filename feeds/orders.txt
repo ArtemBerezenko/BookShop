@@ -1,3 +1,0 @@
-Date=30.11.2016;Customer=Ivanov;Book=Bruce Eckel: Thinking in Java - 43.06;TOTAL AMOUNT=43.06;
-Date=30.11.2016;Customer=Sidorov;Book=Martin Fowler: Refactoring - 54.48;TOTAL AMOUNT=54.48;
-Date=30.11.2016;Customer=Petrov;Book=Bert Bates, Kathy Sierra: Head First Java - 29.91;TOTAL AMOUNT=29.91;

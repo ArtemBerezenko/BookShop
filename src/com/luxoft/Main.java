@@ -1,7 +1,7 @@
 package com.luxoft;
 
-import com.luxoft.Controller.Controller;
 import com.luxoft.Model.Feed;
+import com.luxoft.Model.ParseFeed;
 import com.luxoft.View.View;
 
 /**
@@ -10,7 +10,7 @@ import com.luxoft.View.View;
 public class Main {
 
     public static void main(String[] args) {
-        Feed feed = new Feed();
+        ParseFeed feed = new Feed();
         feed.loadFeed(Feed.file);
         feed.loadFromFile(Feed.document);
         View dialog = new View();

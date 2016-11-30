@@ -3,7 +3,7 @@ package com.luxoft.Model;
 /**
  * Created by Home on 28.11.2016.
  */
-public class Book {
+public class Book implements Product {
     private String title;
     private float price;
 
@@ -13,19 +13,17 @@ public class Book {
         this.price = price;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
+    @Override
     public float getPrice() {
         return price;
     }
-
+    @Override
     public String toString(){
         return this.title + " - $" + this.price + "\n";
     }
 
-    public String createStringBook(){
+    @Override
+    public String createString(){
         return this.title + " - " + this.price;
     }
 }

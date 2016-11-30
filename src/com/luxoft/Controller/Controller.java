@@ -3,7 +3,6 @@ package com.luxoft.Controller;
 import com.luxoft.Model.*;
 import com.luxoft.View.View;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.sun.activation.registries.LogSupport.log;
@@ -13,7 +12,7 @@ import static com.sun.activation.registries.LogSupport.log;
  */
 public class Controller {
     public static View view;
-    public static Shop shop = new Shop();
+    public static ShopInterface shop = new Shop();
 
 
     public static void onRemove(Object elem) {
@@ -25,15 +24,15 @@ public class Controller {
     }
 
     public static void addCurrentOrder(Object order){
-        shop.getCurrentBooks().add((Book) order);
+        shop.getCurrentProduct().add((Book) order);
     }
 
-    public static List<Book> getCurrentBooks(){
-        return shop.getCurrentBooks();
+    public static List<Product> getCurrentBooks(){
+        return shop.getCurrentProduct();
     }
 
-    public static List<Book> getBooks(){
-        return shop.getBooks();
+    public static List<Product> getBooks(){
+        return shop.getProducts();
     }
 
     public static void addCustomer(String sting){
