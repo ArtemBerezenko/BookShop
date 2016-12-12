@@ -14,6 +14,6 @@ public interface ShopInterface {
     List<Order> getAllOrders();
     void update();
     List<String> createListString();
-    void parseFeed(String string);
-    void parseFeedOrders(String string);
+    void parseFeedOrders(String line);
+    void parseFeed(String line);
 }

@@ -1,22 +1,16 @@
 package com.luxoft;
 
-import com.luxoft.Model.Feed;
-import com.luxoft.Model.ParseFeed;
-import com.luxoft.View.View;
-
+import com.luxoft.Controller.Controller;
+import com.luxoft.Controller.ControllerInterface;
+import com.luxoft.Model.ShopInterface;
+import com.luxoft.Model.ShopModel;
 /**
  * Created by Home on 29.11.2016.
  */
 public class Main {
 
     public static void main(String[] args) {
-        ParseFeed feed = new Feed();
-        feed.loadFeed(Feed.file);
-        feed.loadFromFile(Feed.document);
-        View dialog = new View();
-        dialog.pack();
-        dialog.setVisible(true);
-        dialog.repaint();
-
+        ShopInterface shop = new ShopModel();
+        ControllerInterface controller = new Controller(shop);
     }
 }

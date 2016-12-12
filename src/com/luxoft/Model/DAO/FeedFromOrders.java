@@ -1,38 +1,22 @@
-package com.luxoft.Model;
-
-
+package com.luxoft.Model.DAO;
 
 import com.luxoft.Controller.Controller;
-
+import com.luxoft.Model.ShopInterface;
+import com.luxoft.Model.ShopModel;
 
 import java.io.*;
-import java.util.*;
+import java.util.List;
+import java.util.Scanner;
 
 /**
- * Created by Home on 29.11.2016.
+ * Created by Home on 08.12.2016.
  */
-public class Feed implements ParseFeed {
-    public static File file = new File("C:feeds\\books.txt");
-    public static File document = new File("C:feeds\\orders.txt");
+public class FeedFromOrders implements ParseFeed{
+    public static File file = new File("C:feeds\\orders.txt");
 
-    @Override
-    public void loadFeed(File file) {
-        try {
-            BufferedReader in =
-                    new BufferedReader(
-                            new FileReader(file));
-            String line;
-            while( (line = in.readLine()) != null) {
-                Controller.shop.parseFeed(line);
-            }
-            in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    @Override
-    public void loadFromFile(File file) {
+    public void loadFeed(File file, ShopInterface shop) {
+
         if(!checkFileIsEmpty(file)) {
             try {
                 BufferedReader in =
@@ -40,15 +24,15 @@ public class Feed implements ParseFeed {
                                 new FileReader(file));
                 String line;
                 while ((line = in.readLine()) != null) {
-                    Controller.shop.parseFeedOrders(line);
+                    shop.parseFeedOrders(line);
                 }
                 in.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else{
-                Controller.shop.getAllOrders();
-            }
+            shop.getAllOrders();
+        }
     }
 
     public boolean checkFileIsEmpty(File file) {
@@ -68,12 +52,12 @@ public class Feed implements ParseFeed {
     }
 
 
-    public static void writeOnFile (List<String> strings) {
+    public void writeOnFile (List<String> strings) {
         try {
-            if(!document.exists()){
-                document.createNewFile();
+            if(!file.exists()){
+                file.createNewFile();
             }
-            PrintWriter out = new PrintWriter(document.getAbsoluteFile());
+            PrintWriter out = new PrintWriter(file.getAbsoluteFile());
             try {
                 for(String string : strings) {
                     out.println(string);

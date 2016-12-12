@@ -1,8 +1,12 @@
 package com.luxoft.Controller;
 
 import com.luxoft.Model.*;
+import com.luxoft.Model.DAO.FeedFromOrders;
+import com.luxoft.Model.DAO.FeedFromProducts;
+import com.luxoft.Model.DAO.ParseFeed;
 import com.luxoft.View.View;
 
+import javax.swing.*;
 import java.util.List;
 
 import static com.sun.activation.registries.LogSupport.log;
@@ -10,53 +14,95 @@ import static com.sun.activation.registries.LogSupport.log;
 /**
  * Created by Home on 28.11.2016.
  */
-public class Controller {
-    public static View view;
-    public static ShopInterface shop = new Shop();
+public class Controller implements ControllerInterface{
+    private View view;
+    private ShopInterface shop;
 
 
-    public static void onRemove(Object elem) {
+    public Controller(ShopInterface shop) {
+        this.shop = shop;
+        this.loadFromFiles();
+        view = new View(this, shop);
+        this.showProducts();
+        view.createView();
+        view.setVisible(true);
+    }
+
+    public void showOrdersOnPanel(JTextPane textPane1){
+        textPane1.setText(String.valueOf(getAllOrders()));
+        CreateNewOrder();
+    }
+
+    public void loadFromFiles() {
+        ParseFeed fromProducts = new FeedFromProducts();
+        ParseFeed fromOrders = new FeedFromOrders();
+        fromProducts.loadFeed(FeedFromProducts.file, shop);
+        fromOrders.loadFeed(FeedFromOrders.file, shop);
+    }
+
+    public void onRemove(Object elem) {
         shop.removeBook((Book) elem);
     }
 
-    public static void onBuy() {
+    public void onBuy() {
         shop.checkout();
+        view.disableEditListOrders();
+        view.disableEditListProducts();
+        view.disabledButtonBuy();
+        view.disabledEditButtonAdd();
+        view.disabledEditButtonRemove();
     }
 
-    public static void addCurrentOrder(Object order){
+    public void addCurrentOrder(Object order){
         shop.getCurrentProducts().add((Book) order);
+        view.addOnList(order);
     }
 
-    public static List<Product> getCurrentBooks(){
+    public List<Product> getCurrentBooks(){
         return shop.getCurrentProducts();
     }
 
-    public static List<Product> getBooks(){
+    public List<Product> getBooks(){
         return shop.getProducts();
     }
 
-    public static void addCustomer(String sting){
+    public void setCustomer(String sting){
         shop.createCustomer(sting);
+        view.disableEditTextField();
     }
 
-    public static List<Order> getAllOrders(){
+    public List<Order> getAllOrders(){
         List<Order> orders;
         orders = shop.getAllOrders();
         return orders;
     }
 
 
-    public static void createNewOrder() {
+    public void CreateNewOrder() {
         shop.update();
+        view.update();
+        view.enableEditTextField();
+        view.enabledEditListProducts();
+        view.enableEditListOrders();
+        view.enabledEditButtonAdd();
+        view.enabledEditButtonBuy();
+        view.enabledEditButtonRemove();
     }
 
-    public static List<String> getListStrings(){
+    public List<String> getListStrings(){
        return shop.createListString();
     }
 
-    public static void loadInFile(){
-        Feed feed = new Feed();
+    public void loadInFile(){
+        ParseFeed feed = new FeedFromOrders();
         feed.writeOnFile(getListStrings());
     }
 
+    public void setEnabledComponent(JList list, JButton button){
+        view.setEnabledList(list, button);
+    }
+
+    public void showProducts(){
+        view.showProducts();
+    }
 }
